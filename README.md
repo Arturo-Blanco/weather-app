@@ -1,3 +1,5 @@
+#Weather-app
+
 This is a simple application to check the weather status of the current location or a specific location. Using the api provided by https://openweathermap.org/, the current weather and the prediction are consumed every 3 hours.
 
 :running: How to run the project?
@@ -8,7 +10,7 @@ This is a simple application to check the weather status of the current location
 5 - Go to the local address of the port where the application is running.
 
 :eyes: This is a preview of the project.
-<img src='[Sin título.png](https://github.com/Arturo-Blanco/weather-app/blob/develop/Sin%20t%C3%ADtulo.png)https://github.com/Arturo-Blanco/weather-app/blob/develop/Sin%20t%C3%ADtulo.png'/>
+[Project preview](https://github.com/Arturo-Blanco/weather-app/blob/develop/Sin%20t%C3%ADtulo.png)
 
 :construction_worker: Working on responsive design and features.
 

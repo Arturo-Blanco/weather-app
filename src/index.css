@@ -1,0 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background: url('https://www.meganoticias.mx/uploads/noticias/cielo-despejado-con-vientos-de-5-a-10-kmh-414206.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}

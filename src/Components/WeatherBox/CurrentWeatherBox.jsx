@@ -15,7 +15,8 @@ function WeatherBox({ weatherData }) {
         <section className='weather-box'>
             <div className='main-div'>
                 <div className='img-div'>
-                    <img className="weather-img" src={asignIconWeather(weather,description, getLocalHour(datetime,timezone))} alt="" />
+                    {console.log(asignIconWeather(weather, description, getLocalHour(datetime, timezone)))}
+                    <img className="weather-img" src={!date ? asignIconWeather(weather, description, getLocalHour(datetime, timezone)) : asignIconWeather(weather, description, getHour(date))} alt="" />
                 </div>
                 <div className='main-temp'>
                     <span className='temp'>{!fahrenheitTemp ? temp : changeTempUnit(temp)}</span>
@@ -33,7 +34,7 @@ function WeatherBox({ weatherData }) {
                 </div>
             </div>
             <div className='description-group'>
-                <span className='hour'>{!date ? getLocalHour(datetime, timezone) : `${convertDate(date)} ${getHour(date)}` }</span>
+                <span className='hour'>{!date ? getLocalHour(datetime, timezone) : `${convertDate(date)} ${getHour(date)}`}</span>
                 <span>Presión: {pressure}</span>
                 <span>{capitalizeFirstLetter(description)}</span>
                 <span>Viento a: {wind.speed}km/h</span>

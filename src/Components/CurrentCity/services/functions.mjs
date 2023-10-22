@@ -1,4 +1,4 @@
-import { iconWeathers } from "./iconWeathersPaths.mjs"
+import {iconWeathersDay, iconWeathersNight } from "./iconWeathersPaths.mjs"
 
 /**
  *  function to convert degrees to a cardinal direction
@@ -67,11 +67,10 @@ export const asignIconWeather = (weather, description, hour) => {
     const formattedWeather = weather.toLowerCase();
     const formattedDescription = description.replace(' ', '_');
 
-    if ((hour > '19:00' || hour < '06:00') && (formattedWeather === 'clear' || formattedWeather === 'clouds')) {
-        const addNightValue = `${formattedDescription}_night`;
-        return iconWeathers[formattedWeather][addNightValue]
+    if (hour > '19:00' || hour < '06:00'){
+        return iconWeathersNight[formattedWeather][formattedDescription]
     }
-    return iconWeathers[formattedWeather][formattedDescription];
+    return iconWeathersDay[formattedWeather][formattedDescription];
 }
 
 /**

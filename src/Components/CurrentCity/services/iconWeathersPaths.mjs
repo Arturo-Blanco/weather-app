@@ -1,10 +1,13 @@
 export const iconWeathersDay = {
     rain: {
-        drizzle: '/weather-icons/rain/light_rain.png',
         light_rain: '/weather-icons/rain/light_rain.png',
         moderate_rain: '/weather-icons/rain/moderate_rain.png',
         heavy_intensity_rain: '/weather-icons/rain/heavy_intensity_rain.png',
     },
+    drizzle: {
+        light_intensity_drizzle: '/weather-icons/drizzle/drizzle.png'
+    }
+    ,
     clear: {
         clear_sky: '/weather-icons/clear-sky/sun.png',
     },

@@ -15,7 +15,6 @@ function WeatherBox({ weatherData }) {
         <section className='weather-box'>
             <div className='main-div'>
                 <div className='img-div'>
-                    {console.log(asignIconWeather(weather, description, getLocalHour(datetime, timezone)))}
                     <img className="weather-img" src={!date ? asignIconWeather(weather, description, getLocalHour(datetime, timezone)) : asignIconWeather(weather, description, getHour(date))} alt="" />
                 </div>
                 <div className='main-temp'>

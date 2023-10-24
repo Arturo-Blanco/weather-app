@@ -65,8 +65,7 @@ export const changeTempUnit = (value) => {
  */
 export const asignIconWeather = (weather, description, hour) => {
     const formattedWeather = weather.toLowerCase();
-    const formattedDescription = description.replace(' ', '_');
-
+    const formattedDescription = description.replace(/\s+/g, '_');
     if (hour > '19:00' || hour < '06:00'){
         return iconWeathersNight[formattedWeather][formattedDescription]
     }

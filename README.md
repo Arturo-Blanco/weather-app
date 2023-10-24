@@ -13,5 +13,5 @@ This is a simple application to check the weather status of the current location
 ![Project preview](https://github.com/Arturo-Blanco/weather-app/blob/develop/Sin%20t%C3%ADtulo.png)
 
 :construction_worker: Working on responsive design and features.
-
+:construction_worker: Functionality needs to be added in case two or more forecasts are given at the same time.
 :hammer: Made in Vite+React with a bit of Bootstrap and css.

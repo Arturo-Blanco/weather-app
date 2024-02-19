@@ -7,7 +7,7 @@
     justify-content: space-around;
     border-radius: 0.5rem;
     background-color: rgba(12, 35, 70, 0.678);
-    color: #ffffff;
+    color: #e9e3e3;
 }
 
 .main-div {
@@ -57,7 +57,7 @@
 }
 
 .separator {
-    border-left: 1px solid #ffffff;
+    border-left: 1px solid #e9e3e3;
     margin: 0 4px;
 }
 
@@ -90,7 +90,7 @@
     justify-content: center;
     border-radius: 0.5rem;
     background-color: rgba(12, 35, 70, 0.678);
-    color: #ffffff;
+    color: #e9e3e3;
     padding: 1rem;
     margin-right: .5rem;
     cursor: pointer;
@@ -119,4 +119,20 @@
 
 .hour-text {
     opacity: .7;
+}
+
+@media screen and (max-width: 767px) {
+    .weather-box {
+        flex-direction: column;
+        width: 60%;
+    }
+
+    .main-div {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .img-div, .description-group {
+        display: none;
+    }
 }

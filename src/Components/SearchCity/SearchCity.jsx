@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { PropTypes } from 'prop-types';
 import { useState } from 'react';
 import './searchCity.css'
 
@@ -34,4 +34,7 @@ function SearchCity({ onCityChange }) {
     );
 }
 
+SearchCity.propTypes = {
+    onCityChange : PropTypes.func
+}
 export default SearchCity;

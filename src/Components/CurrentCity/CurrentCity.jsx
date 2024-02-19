@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
 import CurrentWeatherBox from "../WeatherBox/CurrentWeatherBox";
 import NextWeatherBox from "../WeatherBox/NextWeatherBox"
 import { useCallback, useEffect, useState } from "react";
 import { getCurrentWeather, getNextWeather } from "./services/api.mjs";
+import { PropTypes } from "prop-types";
 
-const WeatherCity = ({ api_key, updateCityName, city }) => {
+const CurrentCity = ({ api_key, updateCityName, city }) => {
 
     const [isLoad, setIsLoad] = useState(false);
     const [nextWeather, setNextWeather] = useState([]);
@@ -69,4 +69,10 @@ const WeatherCity = ({ api_key, updateCityName, city }) => {
 
     )
 }
-export default WeatherCity;
+
+CurrentCity.propTypes = {
+    api_key : PropTypes.string,
+    updateCityName : PropTypes.func,
+    city : PropTypes.object
+}
+export default CurrentCity;

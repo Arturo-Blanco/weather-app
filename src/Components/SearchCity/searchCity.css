@@ -1,5 +1,6 @@
 .mb-3.form-floating {
     width: 30%;
+    margin: 2rem auto;
 }
 .btn-primary {
     border-color: #fff;

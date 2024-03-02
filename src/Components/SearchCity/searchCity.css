@@ -2,6 +2,17 @@
     width: 30%;
     margin: 2rem auto;
 }
+
 .btn-primary {
-    border-color: #fff;
+    border-color: #d6cece;
+    width: 10%;
+}
+
+@media screen and (max-width : 767px) {
+    .mb-3.form-floating {
+        width: 80%;
+    }
+    .btn-primary {
+        width: 30%;
+    }
 }

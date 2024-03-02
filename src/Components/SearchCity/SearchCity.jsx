@@ -35,6 +35,7 @@ function SearchCity({ onCityChange }) {
 }
 
 SearchCity.propTypes = {
-    onCityChange : PropTypes.func
+    onCityChange: PropTypes.func
 }
+
 export default SearchCity;

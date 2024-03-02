@@ -22,10 +22,10 @@ function SearchCity({ onCityChange }) {
         <>
             <FloatingLabel
                 controlId="floatingInput"
-                label="Buscar ubicación"
+                label="Search location"
                 className="mb-3"
             >
-                <Form.Control type="text" placeholder="Ingrese ciudad" onChange={hanledInputChange} />
+                <Form.Control type="text" placeholder="Type city" onChange={hanledInputChange} />
             </FloatingLabel>
             <Button variant="primary" type="button" onClick={handleClick}>
                 Buscar

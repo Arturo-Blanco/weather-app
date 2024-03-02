@@ -1,29 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import CurrentWeatherBox from "../WeatherBox/CurrentWeatherBox";
 import NextWeatherBox from "../WeatherBox/NextWeatherBox"
-import { getCurrentWeather } from "./services/api.mjs";
+import { getCurrentWeather, getNextWeather } from "./services/api.mjs";
 import { PropTypes } from "prop-types";
 
 const CurrentCity = ({ updateCityName, city }) => {
 
     const [isLoad, setIsLoad] = useState(false);
-    const [currentWeather, setCurrentWeather] = useState({
-        name: '',
-        temp: '',
-        temp_max: '',
-        temp_min: '',
-        feels_like: '',
-        humidity: '',
-        pressure: '',
-        weather: '',
-        datetime: '',
-        timezone: '',
-        description: '',
-        wind: {
-            deg: '',
-            speed: '',
-        }
-    })
+    const [currentWeather, setCurrentWeather] = useState(null)
+    const [nextWeatherData, setNexWeatherData] = useState([])
 
     const getCurrentWeatherData = useCallback(() => {
         getCurrentWeather(city)
@@ -31,6 +16,11 @@ const CurrentCity = ({ updateCityName, city }) => {
                 setCurrentWeather(data)
                 setIsLoad(true)
                 updateCityName(data.name)
+            })
+        getNextWeather(city)
+            .then((data) => {
+                setNexWeatherData(data)
+                setIsLoad(true)
             })
             .catch((error) => {
                 setIsLoad(true)
@@ -54,7 +44,7 @@ const CurrentCity = ({ updateCityName, city }) => {
         isLoad &&
         <>
             <CurrentWeatherBox weatherData={currentWeather} />
-            <NextWeatherBox city={city} changeWeatherData={handleDataChange} />
+            <NextWeatherBox nextWeatherData={nextWeatherData} changeWeatherData={handleDataChange} />
         </>
     )
 }

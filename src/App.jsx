@@ -20,7 +20,7 @@ function App() {
     <main className='container'>
       <SearchCity onCityChange={handleCityChange} />
       <div className='home-text-container'>
-      <p className='home-text'> Clima actual en: {<span className="city-name">{cityName}</span>}</p>
+      <p className='home-text'> Current weather in: {<span className="city-name">{cityName}</span>}</p>
       </div>
       <CurrentCity updateCityName={updateCityName} city={city}/>
     </main>

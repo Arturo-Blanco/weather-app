@@ -40,10 +40,10 @@ export const capitalizeFirstLetter = string => {
 */
 export const getLocalHour = (datetime, timezone) => {
     const date = new Date((datetime + timezone) * 1000)
-    const hours = date.getHours() + 3
+    const hours = String(date.getHours() + 3)
     const minutes = date.getMinutes()
     const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`
-    return `${hours}:${formattedMinutes}`
+    return `${hours.padStart(2,0)}:${formattedMinutes}`
 }
 
 
@@ -63,7 +63,7 @@ export const changeTempUnit = value => {
  * @param {string} hour to verify if day or night
  * @returns {string} string with the corresponding image address according weather, description and hour
  */
-export const asignIconWeather = (weather, description, hour) => {
+export const assignWeatherIcon = (weather, description, hour) => {
     const formattedWeather = weather.toLowerCase();
     const formattedDescription = description.replace(/\s+/g, '_');
     if (hour > '19:00' || hour < '06:00') {

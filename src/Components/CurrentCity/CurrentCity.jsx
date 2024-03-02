@@ -1,13 +1,12 @@
+import { useCallback, useEffect, useState } from "react";
 import CurrentWeatherBox from "../WeatherBox/CurrentWeatherBox";
 import NextWeatherBox from "../WeatherBox/NextWeatherBox"
-import { useCallback, useEffect, useState } from "react";
-import { getCurrentWeather, getNextWeather } from "./services/api.mjs";
+import { getCurrentWeather } from "./services/api.mjs";
 import { PropTypes } from "prop-types";
 
-const CurrentCity = ({ api_key, updateCityName, city }) => {
+const CurrentCity = ({ updateCityName, city }) => {
 
     const [isLoad, setIsLoad] = useState(false);
-    const [nextWeather, setNextWeather] = useState([]);
     const [currentWeather, setCurrentWeather] = useState({
         name: '',
         temp: '',
@@ -17,44 +16,35 @@ const CurrentCity = ({ api_key, updateCityName, city }) => {
         humidity: '',
         pressure: '',
         weather: '',
+        datetime: '',
+        timezone: '',
         description: '',
         wind: {
             deg: '',
             speed: '',
-        },
-    });
-    
-    const fetchCurrentWeatherData = useCallback(() => {
-        getCurrentWeather(api_key, city)
+        }
+    })
+
+    const getCurrentWeatherData = useCallback(() => {
+        getCurrentWeather(city)
             .then((data) => {
-                setCurrentWeather(data);
-                setIsLoad(true);
-                updateCityName(data.name);
+                setCurrentWeather(data)
+                setIsLoad(true)
+                updateCityName(data.name)
             })
             .catch((error) => {
-                console.error('Error getting weather data', + error);
-            });
-    }, [api_key, city, updateCityName])
-
-
-    const fetchNextWeatherData = useCallback(() => {
-        getNextWeather(api_key, city)
-            .then((data) => {
-                setNextWeather(data)
+                setIsLoad(true)
+                console.error('Error getting weather data', + error)
             })
-            .catch((error) => {
-                console.error('Error getting weather data', + error);
-            });
-    }, [api_key, city])
+    }, [city, updateCityName])
 
     useEffect(() => {
-        fetchCurrentWeatherData();
-        fetchNextWeatherData();
-        const intervalId = setInterval(fetchCurrentWeatherData, 600000);
+        getCurrentWeatherData()
+        const intervalId = setInterval(getCurrentWeatherData, 600000)
         return () => {
             clearInterval(intervalId)
         }
-    }, [fetchCurrentWeatherData, fetchNextWeatherData])
+    }, [getCurrentWeatherData])
 
     const handleDataChange = (weatherData) => {
         setCurrentWeather(weatherData)
@@ -64,15 +54,15 @@ const CurrentCity = ({ api_key, updateCityName, city }) => {
         isLoad &&
         <>
             <CurrentWeatherBox weatherData={currentWeather} />
-            <NextWeatherBox weatherData={nextWeather} changeWeatherData={handleDataChange} />
+            <NextWeatherBox city={city} changeWeatherData={handleDataChange} />
         </>
-
     )
 }
 
 CurrentCity.propTypes = {
-    api_key : PropTypes.string,
-    updateCityName : PropTypes.func,
-    city : PropTypes.object
+    api_key: PropTypes.string,
+    updateCityName: PropTypes.func,
+    city: PropTypes.string
 }
+
 export default CurrentCity;

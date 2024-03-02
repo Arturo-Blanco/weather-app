@@ -1,5 +1,4 @@
 .container {
-    width: 80%;
     display: flex;
     height: 100vh;
     flex-direction: column;
@@ -7,12 +6,17 @@
     justify-content: center;
     overflow: hidden;
 }
+
+.home-text-container {
+    display: flex;
+}
+
 .home-text {
     font-size: 2rem;
     color: rgb(240, 231, 231);
-    filter: drop-shadow(2px 2px 2px rgb(36, 8, 8));
-    margin-top: 3rem;
+    filter: drop-shadow(2px 2px 2px rgb(36, 8, 8))
 }
+
 .city-name {
     font-style: italic;
     font-weight: 600;

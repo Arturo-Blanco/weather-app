@@ -1,21 +1,18 @@
-/* eslint-disable react/prop-types */
-import { asignIconWeather } from '../CurrentCity/services/functions.mjs';
-import { getHour } from '../CurrentCity/services/functions.mjs';
-import { convertDate } from '../CurrentCity/services/functions.mjs';
+import { assignWeatherIcon, convertDate, getLocalHour } from '../CurrentCity/services/functions.mjs'
+import PropTypes from 'prop-types'
+import './weatherBox.css'
 
-import './weatherBox.css';
-
-const NextWeatherBox = ({ weatherData , changeWeatherData}) => {
+const NextWeatherBox = ({ nextWeatherData, changeWeatherData }) => {
 
     return (
         <section className='next-weather-card-container'>
             <div className='div-articles'>
-                {weatherData.map((value, index) => (
+                {nextWeatherData.map((value, index) => (
                     <article className="next-weather-card" key={index} onClick={() => changeWeatherData(value)}>
-                        <p className='hour-text'>{getHour(value.date)}</p>
-                        <p className='date-text'>{convertDate(value.date)}</p>
+                        <p className='date-text'>{convertDate(value.datetime, value.timezone)}</p>
+                        <p className='hour-text'>{getLocalHour(value.datetime, value.timezone)}</p>
                         <div className='next-weather-div-img'>
-                            <img className='next-weather-img' src={asignIconWeather(value.weather, value.description, getHour(value.date))} alt="" />
+                            <img className='next-weather-img' src={assignWeatherIcon(value.weather, value.description, getLocalHour(value.datetime, value.timezone))} alt="" />
                         </div>
                         <div className='temp-container'>
                             <span className='temp-max'>{value.temp_max}°</span>
@@ -26,6 +23,12 @@ const NextWeatherBox = ({ weatherData , changeWeatherData}) => {
             </div>
         </section>
     )
-
 }
+
+NextWeatherBox.propTypes = {
+    changeWeatherData: PropTypes.func,
+    nextWeatherData: PropTypes.array
+}
+
+
 export default NextWeatherBox

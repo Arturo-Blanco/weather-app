@@ -3,7 +3,6 @@ const api_key = import.meta.env.VITE_API_KEY
 
 /**
  * function that returns the current weather of the current city or the one being consulted
- * @param {string} api_key key to consume the weather api
  * @param {string} city    city to search weather information
  * @returns {array} array of object containing current weather
  */
@@ -28,7 +27,6 @@ export const getCurrentWeather = async city => {
 
 /**
  * function that returns the city weather in a 3 hour interval 
- * @param {string} api_key key to consume the weather api
  * @param {string} city    city to search weather information
  * @returns {array} array of objects containing upcoming weather predictions
  */

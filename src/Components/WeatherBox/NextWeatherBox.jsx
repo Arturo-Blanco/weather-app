@@ -1,14 +1,17 @@
-import { assignWeatherIcon, convertDate, getLocalHour } from '../CurrentCity/services/functions.mjs'
-import PropTypes from 'prop-types'
+import { assignWeatherIcon, convertDate, getLocalHour } from '../../services/functions.mjs'
+import { useWeather } from '../../hooks/useWeather'
+import { PropTypes } from 'prop-types'
 import './weatherBox.css'
 
-const NextWeatherBox = ({ nextWeatherData, changeWeatherData }) => {
+export const NextWeatherBox = ({ handleDataChange }) => {
+
+    const { nextWeatherData } = useWeather()
 
     return (
         <section className='next-weather-card-container'>
             <div className='div-articles'>
-                {nextWeatherData.map((value, index) => (
-                    <article className="next-weather-card" key={index} onClick={() => changeWeatherData(value)}>
+                {nextWeatherData && nextWeatherData.map((value, index) => (
+                    <article className="next-weather-card" key={index} onClick={() => handleDataChange(value)}>
                         <p className='date-text'>{convertDate(value.datetime, value.timezone)}</p>
                         <p className='hour-text'>{getLocalHour(value.datetime, value.timezone)}</p>
                         <div className='next-weather-div-img'>
@@ -26,9 +29,5 @@ const NextWeatherBox = ({ nextWeatherData, changeWeatherData }) => {
 }
 
 NextWeatherBox.propTypes = {
-    changeWeatherData: PropTypes.func,
-    nextWeatherData: PropTypes.array
+    handleDataChange : PropTypes.func
 }
-
-
-export default NextWeatherBox

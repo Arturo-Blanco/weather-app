@@ -1,21 +1,21 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { PropTypes } from 'prop-types';
-import { useState } from 'react';
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import FloatingLabel from 'react-bootstrap/FloatingLabel'
+import { useState } from 'react'
+import { useWeather } from '../../hooks/useWeather'
 import './searchCity.css'
 
+export const SearchCity = () =>  {
 
-function SearchCity({ onCityChange }) {
-
-    const [city, setCity] = useState(null);
+    const [city, setCity] = useState(null)
+    const { setCityName } = useWeather()
 
     const hanledInputChange = (event) => {
         setCity(event.target.value)
     }
 
     const handleClick = () => {
-        onCityChange(city)
+        setCityName(city)
     }
 
     return (
@@ -31,11 +31,5 @@ function SearchCity({ onCityChange }) {
                 Buscar
             </Button>
         </>
-    );
+    )
 }
-
-SearchCity.propTypes = {
-    onCityChange: PropTypes.func
-}
-
-export default SearchCity;

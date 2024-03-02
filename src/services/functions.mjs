@@ -80,19 +80,5 @@ export const assignWeatherIcon = (weather, description, hour) => {
  */
 export const convertDate = (datetime, timezone) => {
     const date = new Date((datetime + timezone) * 1000)
-    return date.toLocaleDateString('es-ES', { weekday: 'short' })
-}
-
-/**
- * function to splice hour to full date
- * @param {string} date date in full format 
- * @returns {string} hour in HH:mm format
- */
-export const getHour = date => {
-    const hour = date.split(' ')
-    return hour[1].slice(0, -3)
-}
-
-export const getMiliseconds = date => {
-    return new Date(date).getTime()
+    return date.toLocaleDateString('en-EN', { weekday: 'short' })
 }

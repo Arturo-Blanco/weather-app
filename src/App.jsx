@@ -3,9 +3,6 @@ import CurrentCity from './Components/CurrentCity/CurrentCity';
 import { useState } from 'react';
 import './App.css'
 
-const api_key = '171bc2dd50730a8c755075f662756bfb';
-
-
 function App() {
 
   const [cityName, setCityName] = useState(null);
@@ -21,13 +18,12 @@ function App() {
 
   return (
     <main className='container'>
-      <SearchCity api_key={api_key} onCityChange={handleCityChange} />
+      <SearchCity onCityChange={handleCityChange} />
       <div className='home-text-container'>
       <p className='home-text'> Clima actual en: {<span className="city-name">{cityName}</span>}</p>
       </div>
-      <CurrentCity api_key={api_key} updateCityName={updateCityName} city={city}/>
+      <CurrentCity updateCityName={updateCityName} city={city}/>
     </main>
-
   )
 }
 

@@ -2,17 +2,13 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import { useState } from 'react'
-import { useWeather } from '../../hooks/useWeather'
+import { useWeather } from '../../hooks/useCurrentWeather'
 import './searchCity.css'
 
-export const SearchCity = () =>  {
+export const SearchCity = () => {
 
-    const [city, setCity] = useState(null)
+    const [city, setCity] = useState('')
     const { setCityName } = useWeather()
-
-    const hanledInputChange = (event) => {
-        setCity(event.target.value)
-    }
 
     const handleClick = () => {
         setCityName(city)
@@ -25,7 +21,7 @@ export const SearchCity = () =>  {
                 label="Search location"
                 className="mb-3"
             >
-                <Form.Control type="text" placeholder="Type city" onChange={hanledInputChange} />
+                <Form.Control type="text" placeholder="Type city" onChange={event => setCity(event.target.value)} />
             </FloatingLabel>
             <Button variant="primary" type="button" onClick={handleClick}>
                 Buscar

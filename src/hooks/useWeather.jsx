@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback } from "react"
 import { getCurrentWeather, getNextWeather } from "../services/api.mjs";
 
-export const useWeather = () => {
-    const [isLoading, setIsLoading] = useState(null)
-    const [cityName, setCityName] = useState(null)
-    const [hasError, setHasError] = useState(null)
+export const useWeather = cityName => {
+    const [isLoading, setIsLoading] = useState(false)
+    const [cityName, setCityName] = useState('')
+    const [hasError, setHasError] = useState(false)
     const [currentWeather, setCurrentWeather] = useState(null)
-    const [nextWeatherData, setNexWeatherData] = useState([])
+    const [nextWeatherData, setNexWeatherData] = useState(null)
 
     const getCurrentWeatherData = useCallback(async () => {
         setIsLoading(true)

@@ -57,7 +57,7 @@ const getPosition = async () => {
     try {
         return await new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(resolve, reject)
-        });
+        })
     } catch (error) {
         throw new Error('Error getting geolocation', error)
     }

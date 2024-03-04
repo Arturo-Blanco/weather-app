@@ -1,7 +1,7 @@
-import { useContext } from 'react'
 import { assignWeatherIcon, convertDate, getLocalHour } from '../../services/functions.mjs'
 import { PropTypes } from 'prop-types'
-import { WeatherContext } from '../../hooks/weatherContext'
+import { WeatherContext } from '../../context/weatherContext'
+import { useContext } from 'react'
 
 export const NextWeatherCard = ({ weatherData }) => {
 

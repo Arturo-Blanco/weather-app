@@ -1,27 +1,36 @@
-import { useState, useEffect } from "react"
-import { getNextWeather } from "../services/api.mjs";
+import { useState, useEffect, useContext } from "react"
+import { getNextWeather } from "../services/api.mjs"
+import { CityContext } from "../context/cityContext"
+import { useCurrentWeather } from "./useCurrentWeather"
 
-export const useNextWeather = cityName => {
+export const useNextWeather = () => {
+    const { coords, cityName } = useContext(CityContext)
     const [isLoading, setIsLoading] = useState(false)
     const [nextWeatherData, setNexWeatherData] = useState([])
+    const { currentCityName } = useCurrentWeather()
+    const [nextWeatherHasError, setnextWeatherHasError] = useState(false)
 
     useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true)
-            try {
-                const data = await getNextWeather(cityName)
-                setNexWeatherData(data)
-            } catch (error) {
-                console.error("Error fetching next weather:", error)
-            } finally {
-                setIsLoading(false)
+        if ((coords.latitude && coords.longitude) || cityName) {
+            const fetchData = async () => {
+                setIsLoading(true)
+                try {
+                    const data = await getNextWeather(coords.latitude, coords.longitude, cityName)
+                    setNexWeatherData(data)
+                } catch (error) {
+                    console.error("Error fetching next weather:", error)
+                    setnextWeatherHasError(true)
+                } finally {
+                    setIsLoading(false)
+                }
             }
+
+            fetchData()
+            const intervalId = setInterval(fetchData, 600000)
+            return () => clearInterval(intervalId)
         }
+    }, [coords.latitude, coords.longitude, cityName, currentCityName])
 
-        fetchData()
-        const intervalId = setInterval(fetchData, 600000)
-        return () => clearInterval(intervalId)
-    }, [cityName])
 
-    return { nextWeatherData, isLoading }
+    return { nextWeatherData, isLoading, nextWeatherHasError }
 }

@@ -1,24 +1,18 @@
-import { useWeather } from '../../hooks/useWeather'
+import { useCurrentWeather } from '../../hooks/useCurrentWeather'
 import { CurrentWeatherCard } from '../Card/CurrentWeather'
-import { NextWeatherBox } from './NextWeatherBox'
-import { WeatherProvider } from '../../hooks/weatherContext'
 import './weatherBox.css'
 
-export const CurrentWeatherBox = () => {
-    const { currentWeather, isLoading, nextWeatherData, hasError } = useWeather()
 
-    if (hasError) {
+export const CurrentWeatherBox = () => {
+    const { currentWeather, currentWeatherHasError } = useCurrentWeather()
+
+    if (currentWeatherHasError) {
         return <h2 style={{ fontSize: 24, color: '#32e5' }}>Ocurrió un error. Intente nuevamente...</h2>
     }
 
     return (
-        <WeatherProvider>
-            <CurrentWeatherCard displayWeather={currentWeather} />
-            {isLoading ? (
-                <h2 style={{ fontSize: 24, color: '#ffff' }}>Cargando clima extendido...</h2>
-            ) : (
-                nextWeatherData && <NextWeatherBox />
-            )}
-        </WeatherProvider>
+        currentWeather &&
+        <CurrentWeatherCard weatherData={currentWeather} />
+
     )
 }

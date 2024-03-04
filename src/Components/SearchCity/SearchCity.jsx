@@ -1,14 +1,15 @@
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
-import { useState } from 'react'
-import { useWeather } from '../../hooks/useCurrentWeather'
+import { useContext, useState } from 'react'
+import { useCurrentWeather } from '../../hooks/useCurrentWeather'
 import './searchCity.css'
+import { CityContext } from '../../context/cityContext'
 
 export const SearchCity = () => {
 
     const [city, setCity] = useState('')
-    const { setCityName } = useWeather()
+    const { setCityName } = useContext(CityContext)
 
     const handleClick = () => {
         setCityName(city)

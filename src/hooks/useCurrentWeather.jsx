@@ -1,28 +1,35 @@
-import { useState, useEffect } from "react"
-import { getCurrentWeather } from "../services/api.mjs";
+import { useState, useEffect, useContext } from "react"
+import { getCurrentWeather } from "../services/api.mjs"
+import { CityContext } from "../context/cityContext"
 
-export const useCurrentWeather = cityName => {
-
+export const useCurrentWeather = () => {
+    const { coords, cityName } = useContext(CityContext)
     const [currentWeather, setCurrentWeather] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    const [currentWeatherHasError, setcurrentWeatherHasError] = useState(false)
+    const [currentCityName, setCurrentCityName] = useState('')
 
     useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true)
-            try {
-                const data = await getCurrentWeather(cityName)
-                setCurrentWeather(data)
-            } catch (error) {
-                console.error("Error fetching current weather:", error)
-            } finally {
-                setIsLoading(false)
+        if ((coords.latitude && coords.longitude) || cityName) {
+            const fetchData = async () => {
+                setIsLoading(true)
+                try {
+                    const { name, ...data } = await getCurrentWeather(coords.latitude, coords.longitude, cityName)
+                    setCurrentWeather(data)
+                    setCurrentCityName(name)
+                } catch (error) {
+                    console.error("Error fetching current weather:", error)
+                    setcurrentWeatherHasError(true)
+                } finally {
+                    setIsLoading(false)
+                }
             }
+
+            fetchData()
+            const intervalId = setInterval(fetchData, 600000)
+            return () => clearInterval(intervalId)
         }
+    }, [coords.latitude, coords.longitude, cityName])
 
-        fetchData()
-        const intervalId = setInterval(fetchData, 600000)
-        return () => clearInterval(intervalId)
-    }, [cityName])
-
-    return { isLoading, currentWeather }
+    return { isLoading, currentWeather, currentCityName, cityName, currentWeatherHasError }
 }

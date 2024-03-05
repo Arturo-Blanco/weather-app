@@ -8,7 +8,6 @@ const api_key = import.meta.env.VITE_API_KEY
  * @returns {array} array of object containing current weather
  */
 export const getCurrentWeather = async (latitude, longitude, cityName) => {
-
     let url = ''
     try {
         if (cityName) {
@@ -20,7 +19,7 @@ export const getCurrentWeather = async (latitude, longitude, cityName) => {
         const response = await fetch(url)
         const data = await handleResponse(response)
         const weatherForecast = getWeatherData(null, data)
-
+        
         return weatherForecast
     } catch (error) {
         throw new Error('Error fetching weather data', error)
@@ -33,7 +32,6 @@ export const getCurrentWeather = async (latitude, longitude, cityName) => {
  * @returns {array} array of objects containing upcoming weather predictions
  */
 export const getNextWeather = async (latitude, longitude, cityName) => {
-
     let url = ''
     try {
         if (cityName) {
@@ -49,7 +47,7 @@ export const getNextWeather = async (latitude, longitude, cityName) => {
         const weatherForecast = data.list.slice(0, 8).map(element => {
             return getWeatherData(data.city, element)
         })
-
+       
         return weatherForecast
     } catch (error) {
         throw new Error('Error fetching weather data', error)

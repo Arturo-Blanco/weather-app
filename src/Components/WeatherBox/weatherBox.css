@@ -145,6 +145,7 @@
     }
     
     .div-articles {
+        overflow: scroll;
         grid-template-columns: repeat(8, calc((100% / 2) - 3px ));
     }
 }

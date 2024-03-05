@@ -5,19 +5,22 @@ import { NextWeatherBox } from "../WeatherBox/NextWeatherBox"
 import { WeatherProvider } from "../../context/weatherContext"
 
 export const Layout = () => {
+    const { currentWeather, currentCityName, currentWeatherHasError } = useCurrentWeather()
 
-    const { currentWeather, currentCityName } = useCurrentWeather()
+    if (currentWeatherHasError) return <p style={{ fontSize: 24, color: '#32e5' }}> An error occurred. Try again. </p>
 
     return (
-        (currentCityName && currentWeather) ? <>
-            <div className='home-text-container'>
+        <>
+            < div className='home-text-container' >
                 <p className='home-text'> Current weather in: {<span className="city-name">{currentCityName}</span>}</p>
-            </div>
-            <WeatherProvider>
-                <CurrentWeatherBox />
-                <NextWeatherBox />
-            </WeatherProvider>
-        </> :
-            <Spinner animation="border" variant="light" />
+            </div >
+            {(currentWeather && !currentWeatherHasError) ?
+                <WeatherProvider>
+                    <CurrentWeatherBox />
+                    <NextWeatherBox />
+                </WeatherProvider>
+                :
+                <Spinner animation="border" variant="light" />}
+        </>
     )
 }

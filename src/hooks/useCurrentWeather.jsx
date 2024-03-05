@@ -12,6 +12,7 @@ export const useCurrentWeather = () => {
     useEffect(() => {
         if ((coords.latitude && coords.longitude) || cityName) {
             const fetchData = async () => {
+                setcurrentWeatherHasError(false)
                 setIsLoading(true)
                 try {
                     const { name, ...data } = await getCurrentWeather(coords.latitude, coords.longitude, cityName)

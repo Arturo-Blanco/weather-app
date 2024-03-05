@@ -6,16 +6,19 @@ export const NextWeatherBox = () => {
 
     const { nextWeatherData, isLoading, nextWeatherHasError } = useNextWeather()
 
+    if (nextWeatherHasError) return <p className='extended-forecast-error'> Loading extended forecast...</p>
+
     return (
         <section className='next-weather-card-container'>
             <div className='div-articles'>
-
-                {(nextWeatherData && !isLoading) && nextWeatherData.map((value, index) => (
-                    < NextWeatherCard key={index} weatherData={value} />
-                )
-                )}
+                {(nextWeatherData && !isLoading) &&
+                    nextWeatherData.map((value, index) => (
+                        < NextWeatherCard key={index} weatherData={value} />)
+                    )}
             </div>
-            {isLoading && <h2 style={{ color: '#fff43' }}>Cargando pronostico extendido...</h2>}
+            {isLoading
+                && <p className='extended-forecast'>
+                    Loading extended forecast...</p>}
         </section>
     )
 }

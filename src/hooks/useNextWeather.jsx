@@ -8,23 +8,23 @@ export const useNextWeather = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [nextWeatherData, setNexWeatherData] = useState([])
     const { currentCityName } = useCurrentWeather()
-    const [nextWeatherHasError, setnextWeatherHasError] = useState(false)
+    const [nextWeatherHasError, setNextWeatherHasError] = useState(false)
 
     useEffect(() => {
         if ((coords.latitude && coords.longitude) || cityName) {
             const fetchData = async () => {
+                setNextWeatherHasError(false)
                 setIsLoading(true)
                 try {
                     const data = await getNextWeather(coords.latitude, coords.longitude, cityName)
                     setNexWeatherData(data)
                 } catch (error) {
                     console.error("Error fetching next weather:", error)
-                    setnextWeatherHasError(true)
+                    setNextWeatherHasError(true)
                 } finally {
                     setIsLoading(false)
                 }
             }
-
             fetchData()
             const intervalId = setInterval(fetchData, 600000)
             return () => clearInterval(intervalId)

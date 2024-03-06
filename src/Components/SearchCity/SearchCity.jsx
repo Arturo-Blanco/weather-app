@@ -1,41 +1,36 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { PropTypes } from 'prop-types';
-import { useState } from 'react';
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import { InputGroup } from 'react-bootstrap'
+import { useState } from 'react'
+import { useLocation } from 'wouter'
 import './searchCity.css'
 
+export const SearchCity = () => {
+    const [, setLocation] = useLocation()
+    const [city, setCity] = useState('')
 
-function SearchCity({ onCityChange }) {
-
-    const [city, setCity] = useState(null);
-
-    const hanledInputChange = (event) => {
+    const handleInputChange = (event) => {
         setCity(event.target.value)
     }
 
     const handleClick = () => {
-        onCityChange(city)
+        setLocation(`/search/${city}`)
+        setCity('')
     }
 
     return (
         <>
-            <FloatingLabel
-                controlId="floatingInput"
-                label="Buscar ubicación"
-                className="mb-3"
-            >
-                <Form.Control type="text" placeholder="Ingrese ciudad" onChange={hanledInputChange} />
-            </FloatingLabel>
-            <Button variant="primary" type="button" onClick={handleClick}>
-                Buscar
-            </Button>
+            <InputGroup className="mb-3">
+                <Form.Control
+                    placeholder="Search city"
+                    aria-label="Input to enter the city name"
+                    aria-describedby="basic-addon2"
+                    onChange={handleInputChange}
+                />
+                <Button  id="button-addon2" onClick={handleClick}>
+                    Search
+                </Button>
+            </InputGroup>
         </>
-    );
+    )
 }
-
-SearchCity.propTypes = {
-    onCityChange: PropTypes.func
-}
-
-export default SearchCity;

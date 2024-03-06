@@ -1,29 +1,26 @@
-import SearchCity from './Components/SearchCity/SearchCity';
-import CurrentCity from './Components/CurrentCity/CurrentCity';
-import { useState } from 'react';
+import { HeadProvider, Title, Meta } from 'react-head'
+import { Route, Switch } from 'wouter'
+import { NotFound } from './Components/NotFound/NotFound'
+import { Layout } from './Components/Layout/Layout'
+import { Home } from './Components/Home/Home'
+import { Navbar } from './Components/NavBar/NavBar'
 import './App.css'
+
+
 
 function App() {
 
-  const [cityName, setCityName] = useState(null);
-  const [city, setCity] = useState(null);
-
-  const updateCityName = (newCityName) => {
-    setCityName(newCityName)
-  }
-
-  const handleCityChange = (newCity) => {
-    setCity(newCity)
-  }
-
   return (
-    <main className='container'>
-      <SearchCity onCityChange={handleCityChange} />
-      <div className='home-text-container'>
-      <p className='home-text'> Clima actual en: {<span className="city-name">{cityName}</span>}</p>
-      </div>
-      <CurrentCity updateCityName={updateCityName} city={city}/>
-    </main>
+    <HeadProvider>
+      <Title>{'Weather app'}</Title>
+      <Meta name="description" content={`Explore real-time weather conditions. Your go-to application for up-to-date weather information.`} />
+      <Navbar/>
+        <Switch>
+          <Route component={Home} exact path='/' />
+          <Route component={Layout} path='/search/:city' />
+          <Route component={NotFound} />
+        </Switch>
+    </HeadProvider>
   )
 }
 

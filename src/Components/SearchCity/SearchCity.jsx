@@ -24,10 +24,10 @@ export const SearchCity = () => {
         <>
             <FloatingLabel
                 controlId="floatingInput"
-                label="Search location"
+                label="Type your city"
                 className="mb-3"
             >
-                <Form.Control type="text" aria-label="Input to write your city" value={city} onChange={handleInputChange} />
+                <Form.Control type="text" aria-label="Input to write your city" placeholder="Type your city" value={city} onChange={handleInputChange} />
             </FloatingLabel>
             <Button variant="primary" type="button" onClick={handleClick}>
                 Buscar

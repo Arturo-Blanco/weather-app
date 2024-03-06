@@ -1,0 +1,6 @@
+.error-location {
+    font-size: 2rem;
+    color: rgb(240, 231, 231);
+    filter: drop-shadow(2px 2px 2px rgb(36, 8, 8));
+    text-align: center;
+}

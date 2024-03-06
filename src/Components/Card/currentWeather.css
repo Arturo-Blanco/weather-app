@@ -1,0 +1,113 @@
+.current-weather-box {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 0.5rem;
+    background-color: rgba(12, 35, 70, 0.678);
+    color: #e9e3e3;
+}
+
+.current-weather-information {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2rem 0;
+    padding-top: 0;
+    width: 100%;
+}
+
+.current-weather-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 60%;
+}
+
+.current-weather-img-div {
+    width: 20%;
+}
+
+.current-weather-img {
+    width: 100%;
+    object-fit: contain;
+    filter: none;
+    opacity: 1;
+}
+
+.current-weather-temp-group,
+.current-weather-description {
+    display: flex;
+    flex-direction: column;
+}
+
+.current-weather-temp-div {
+    display: flex;
+    align-items: center;
+}
+
+.current-weather-temp-unit {
+    font-size: 4rem;
+    font-weight: 600;
+}
+
+.units-container {
+    font-weight: 100;
+    font-size: 1.5rem;
+    line-height: 24px;
+    margin-left: 4px;
+}
+
+.celsius-unit,
+.fahrenheit-unit {
+    cursor: pointer;
+}
+
+.units-separator {
+    border-left: 1px solid #e9e3e3;
+    margin: 0 4px;
+}
+
+.active {
+    font-weight: 500;
+    font-size: 1.8rem;
+}
+
+.hour {
+    font-size: 1.5rem;
+}
+
+.show-current-weather-div {
+   display: flex;
+   width: 90%;
+   justify-content: flex-start;
+   align-items: center;
+   height: 30px;
+}
+
+.show-current-weather-btn {
+    border: none;
+    background-color: transparent;
+    color: #e9e3e3;
+    text-decoration: underline;
+    font-size: 1.2rem;
+}
+
+@media screen and (max-width: 767px) {
+
+    .current-weather-box {
+        width: 60%;
+    }
+
+    .current-weather-div {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .current-weather-img,
+    .current-weather-description {
+        display: none;
+    }
+}

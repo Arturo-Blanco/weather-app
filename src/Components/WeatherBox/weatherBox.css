@@ -1,75 +1,3 @@
-.weather-box {
-    width: 80%;
-    margin: 0 auto;
-    padding: 2rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border-radius: 0.5rem;
-    background-color: rgba(12, 35, 70, 0.678);
-    color: #e9e3e3;
-}
-
-.main-div {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 60%;
-}
-
-.img-div {
-    width: 20%;
-}
-
-.weather-img {
-    width: 100%;
-    object-fit: contain;
-    filter: none;
-    opacity: 1;
-}
-
-.temp-group,
-.description-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.main-temp {
-    display: flex;
-    align-items: center;
-}
-
-.temp {
-    font-size: 4rem;
-    font-weight: 600;
-}
-
-.units-container {
-    font-weight: 100;
-    font-size: 1.5rem;
-    line-height: 24px;
-    margin-left: 4px;
-}
-
-.celsius-unit,
-.fahrenheit-unit {
-    cursor: pointer;
-}
-
-.separator {
-    border-left: 1px solid #e9e3e3;
-    margin: 0 4px;
-}
-
-.active {
-    font-weight: 500;
-    font-size: 1.8rem;
-}
-
-.hour {
-    font-size: 1.5rem;
-}
-
 .next-weather-card-container {
     width: 80%;
     margin-top: 2rem;
@@ -78,7 +6,7 @@
 
 .div-articles {
     display: grid;
-    grid-template-columns: repeat(8, calc((100% / 8) - 6px ));
+    grid-template-columns: repeat(8, calc((100% / 8) - 6px));
     gap: 6px;
 }
 
@@ -119,33 +47,37 @@
 }
 
 .hour-text {
+    text-align: center;
+    display: flex;
+    margin: auto;
     opacity: .7;
 }
 
+.extended-forecast {
+    font-size: 2rem;
+    color: #0a130e;
+}
+
+.extended-forecast-error {
+    font-size: 2rem;
+    color: red;
+}
+
 @media screen and (max-width: 767px) {
-    
-    .weather-box {
-        flex-direction: column;
-        width: 60%;
-    }
-
-    .main-div {
-        width: 100%;
-        flex-direction: column;
-    }
-
-    .img-div,
-    .description-group {
-        display: none;
-    }
 
     .next-weather-card-container {
         width: 62%;
         margin-top: 1rem;
     }
-    
+
     .div-articles {
         overflow: scroll;
-        grid-template-columns: repeat(8, calc((100% / 2) - 3px ));
+        grid-template-columns: repeat(8, calc((100% / 2) - 3px));
+    }
+
+    .extended-forecast,
+    .extended-forecast-error {
+        font-weight: 600;
+        font-size: 1.2rem;
     }
 }

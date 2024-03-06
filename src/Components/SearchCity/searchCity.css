@@ -8,6 +8,10 @@
     width: 10%;
 }
 
+.mb-3.form-floating > label {
+    opacity: .7;
+}
+
 @media screen and (max-width : 767px) {
     .mb-3.form-floating {
         width: 80%;

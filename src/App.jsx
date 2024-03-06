@@ -3,7 +3,7 @@ import { Route, Switch } from 'wouter'
 import { NotFound } from './Components/NotFound/NotFound'
 import { Layout } from './Components/Layout/Layout'
 import { Home } from './Components/Home/Home'
-import { Navbar } from './Components/NavBar/NavBar'
+import { Navbar } from './Components/NavBar/Navbar'
 import './App.css'
 
 

@@ -6,7 +6,7 @@ export const NextWeatherBox = () => {
 
     const { nextWeatherData, isLoading, nextWeatherHasError } = useNextWeather()
 
-    if (nextWeatherHasError) return <p className='extended-forecast-error'> Loading extended forecast...</p>
+    if (nextWeatherHasError) return <p className='extended-forecast-error'> Error getting data</p>
 
     return (
         <section className='next-weather-card-container'>

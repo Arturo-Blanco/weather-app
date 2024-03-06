@@ -11,6 +11,7 @@ This is a simple application to check the weather status of the current location
 
 :eyes: This is a preview of the project.
 ![Project preview]([https://github.com/arturobdev/weather-app/blob/develop/Weather-app-preview.jpg])
+
 ![Project mobile preview]([https://github.com/arturobdev/weather-app/blob/main/image.png])
 
 :hammer: Made in Vite+React with a bit of Bootstrap and css.

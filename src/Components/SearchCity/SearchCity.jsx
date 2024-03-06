@@ -1,37 +1,36 @@
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import FloatingLabel from 'react-bootstrap/FloatingLabel'
-import { useContext, useState } from 'react'
-import { CityContext } from '../../context/cityContext'
+import { InputGroup } from 'react-bootstrap'
+import { useState } from 'react'
+import { useLocation } from 'wouter'
 import './searchCity.css'
 
-
 export const SearchCity = () => {
-
+    const [, setLocation] = useLocation()
     const [city, setCity] = useState('')
-    const { setCityName } = useContext(CityContext)
 
     const handleInputChange = (event) => {
         setCity(event.target.value)
     }
 
     const handleClick = () => {
-        setCityName(city)
+        setLocation(`/search/${city}`)
         setCity('')
     }
 
     return (
         <>
-            <FloatingLabel
-                controlId="floatingInput"
-                label="Type your city"
-                className="mb-3"
-            >
-                <Form.Control type="text" aria-label="Input to write your city" placeholder="Type your city" value={city} onChange={handleInputChange} />
-            </FloatingLabel>
-            <Button variant="primary" type="button" onClick={handleClick}>
-                Buscar
-            </Button>
+            <InputGroup className="mb-3">
+                <Form.Control
+                    placeholder="Search city"
+                    aria-label="Input to enter the city name"
+                    aria-describedby="basic-addon2"
+                    onChange={handleInputChange}
+                />
+                <Button  id="button-addon2" onClick={handleClick}>
+                    Search
+                </Button>
+            </InputGroup>
         </>
     )
 }

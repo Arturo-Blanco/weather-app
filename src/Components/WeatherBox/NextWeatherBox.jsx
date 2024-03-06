@@ -1,10 +1,11 @@
+import { useParams } from 'wouter'
 import { useNextWeather } from '../../hooks/useNextWeather'
 import { NextWeatherCard } from '../Card/NextWeather'
-import './weatherBox.css'
+import './nextWeatherBox.css'
 
 export const NextWeatherBox = () => {
-
-    const { nextWeatherData, isLoading, nextWeatherHasError } = useNextWeather()
+    const params = useParams()
+    const { nextWeatherData, isLoading, nextWeatherHasError } = useNextWeather({ params })
 
     if (nextWeatherHasError) return <p className='extended-forecast-error'> Error getting data</p>
 

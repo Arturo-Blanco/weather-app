@@ -3,9 +3,10 @@ const api_key = import.meta.env.VITE_API_KEY
 
 /**
  * function that returns the current weather of the current city or the one being consulted
- * @param {string} currentLocation  current location obtained from navigator.geolocation
- * @param {string} city    city to search weather information
- * @returns {array} array of object containing current weather
+ * @param {string} latitude  the latitude to your current location
+ * @param {string} longitude  the longitude to your current location
+ * @param {string} cityName  the city name to search weather information
+ * @returns {object}  object containing current weather
  */
 export const getCurrentWeather = async (latitude, longitude, cityName) => {
     let url = ''
@@ -19,7 +20,7 @@ export const getCurrentWeather = async (latitude, longitude, cityName) => {
         const response = await fetch(url)
         const data = await handleResponse(response)
         const weatherForecast = getWeatherData(null, data)
-        
+
         return weatherForecast
     } catch (error) {
         throw new Error('Error fetching weather data', error)
@@ -28,7 +29,9 @@ export const getCurrentWeather = async (latitude, longitude, cityName) => {
 
 /**
  * function that returns the city weather in a 3 hour interval 
- * @param {string} city    city to search weather information
+ * @param {string} latitude  the latitude to your current location
+ * @param {string} longitude  the longitude to your current location
+ * @param {string} cityName  the city name to search weather information
  * @returns {array} array of objects containing upcoming weather predictions
  */
 export const getNextWeather = async (latitude, longitude, cityName) => {
@@ -47,20 +50,10 @@ export const getNextWeather = async (latitude, longitude, cityName) => {
         const weatherForecast = data.list.slice(0, 8).map(element => {
             return getWeatherData(data.city, element)
         })
-       
+
         return weatherForecast
     } catch (error) {
         throw new Error('Error fetching weather data', error)
-    }
-}
-
-export const getPosition = async () => {
-    try {
-        return await new Promise((resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(resolve, reject)
-        })
-    } catch (error) {
-        throw new Error('Error getting geolocation', error)
     }
 }
 
@@ -71,8 +64,13 @@ const handleResponse = response => {
     return response.json()
 }
 
+/**
+ * function that returns the formatted city weather 
+ * @param {object} city  the object city is global information when whe have more than one data
+ * @param {object} data  data is the individual information for each weather
+ * @returns {array} array of objects containing upcoming weather predictions
+ */
 const getWeatherData = (city, data) => {
-
     return {
         name: city ? city.name : data.name,
         temp: Math.round(data.main.temp),
@@ -90,4 +88,19 @@ const getWeatherData = (city, data) => {
             speed: data.wind.speed,
         }
     }
+}
+
+/**
+ * function that returns the current location 
+ * @returns {object} object containing coords
+ */
+export const getPosition = async () => {
+    try {
+        return await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject)
+        })
+    } catch (error) {
+        throw new Error('Error getting geolocation', error)
+    }
+
 }

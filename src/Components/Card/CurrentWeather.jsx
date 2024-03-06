@@ -23,14 +23,14 @@ export const CurrentWeatherCard = ({ weatherData }) => {
 
     return (
         weatherToShow &&
-        <section className='current-weather-box'>
+        <section className='current-weather-container'>
             <div className='show-current-weather-div'>
                 {selectedWeather &&
                     <button className='show-current-weather-btn' onClick={showCurrentWeather}>Now</button>
                 }
             </div>
-            <section className='current-weather-information'>
-                <article className='current-weather-div'>
+            <section className='current-weather-section'>
+                <div className='current-weather-box'>
                     <div className='current-weather-img-div'>
                         <img className="current-weather-img" src={assignWeatherIcon(weatherToShow.weather, weatherToShow.description, getDate.hour)} alt="" />
                     </div>
@@ -42,21 +42,25 @@ export const CurrentWeatherCard = ({ weatherData }) => {
                             <span className={`fahrenheit-unit ${fahrenheitTemp ? 'active' : null}`} onClick={() => setFahrenheitTemp(true)}>°F</span>
                         </div>
                     </div>
+                </div>
+                <div className='current-weather-information'>
                     <div className='current-weather-temp-group'>
                         <span>Feels like: {!fahrenheitTemp ? weatherToShow.feels_like + '°C' : changeTempUnit(weatherToShow.feels_like) + '°F'}</span>
                         <span>Max: {!fahrenheitTemp ? weatherToShow.temp_max + '°C' : changeTempUnit(weatherToShow.temp_max) + '°F'}</span>
                         <span>Min: {!fahrenheitTemp ? weatherToShow.temp_min + '°C' : changeTempUnit(weatherToShow.temp_min) + '°F'}</span>
                         <span>Humidity: {weatherToShow.humidity}%</span>
                     </div>
-                </article>
-                <article className='current-weather-description'>
-                    <span className='day'> {getDate.day}</span>
-                    <span className='hour'>{getDate.hour}</span>
-                    <span>Pressure: {weatherToShow.pressure}</span>
-                    <span>{capitalizeFirstLetter(weatherToShow.description)}</span>
-                    <span>Wind at: {weatherToShow.wind.speed}km/h</span>
-                    <span>Direction: {degToCardinal(weatherToShow.wind.deg)}</span>
-                </article>
+                    <div className='current-weather-description'>
+                        <div>
+                            <span className='day'> {getDate.day}</span>
+                            <span className='hour'>{getDate.hour}</span>
+                        </div>
+                        <span>Pressure: {weatherToShow.pressure}</span>
+                        <span>{capitalizeFirstLetter(weatherToShow.description)}</span>
+                        <span>Wind at: {weatherToShow.wind.speed}km/h</span>
+                        <span>Direction: {degToCardinal(weatherToShow.wind.deg)}</span>
+                    </div>
+                </div>
             </section>
         </section>
     )

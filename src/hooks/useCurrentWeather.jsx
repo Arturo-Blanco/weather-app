@@ -30,7 +30,7 @@ export const useCurrentWeather = () => {
             const intervalId = setInterval(fetchData, 600000)
             return () => clearInterval(intervalId)
         }
-    }, [coords.latitude, coords.longitude, cityName])
+    }, [coords.latitude, coords.longitude, cityName, currentCityName])
 
     return { isLoading, currentWeather, currentCityName, cityName, currentWeatherHasError }
 }

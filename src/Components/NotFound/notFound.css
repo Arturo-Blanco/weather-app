@@ -1,0 +1,34 @@
+.error-container {
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(128, 128, 128, 0.658);
+    color: #e9ebf5;
+}
+
+.error-title {
+    font-size: 8rem;
+    font-weight: bold;
+}
+
+.error-message {
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+.home-link {
+    margin-top: 20px;
+    text-decoration: none;
+    color: #f0f1f7;
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.home-link:hover {
+    text-decoration: underline;
+}
+
+.cloud {
+    font-size: 5rem;
+    margin-top: 20px;
+}

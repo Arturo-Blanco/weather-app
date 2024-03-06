@@ -1,4 +1,5 @@
 import { iconWeathersDay, iconWeathersNight } from "./iconWeathersPaths.mjs"
+import { DateTime } from "luxon"
 
 /**
  *  function to convert degrees to a cardinal direction
@@ -39,13 +40,18 @@ export const capitalizeFirstLetter = string => {
  * @returns {string} local hour time of the last measurement in HH:mm
 */
 export const getLocalHour = (datetime, timezone) => {
-    const date = new Date((datetime + timezone) * 1000)
-    const hours = String(date.getHours() + 3)
-    const minutes = date.getMinutes()
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`
-    return `${hours.padStart(2,0)}:${formattedMinutes}`
+    const timestampInMiliseconds = datetime * 1000
+    const date = DateTime.fromMillis(timestampInMiliseconds).setZone(timezone / 60).setLocale('en')
+    const hour = date.toLocaleString({
+        hour: 'numeric',
+        minute: 'numeric',
+        hourCycle: 'h12'
+    })
+    const day = date.toLocaleString({
+        weekday: 'short'
+    })
+    return { hour, day }
 }
-
 
 /** function to convert °C to °F 
  * @param {number} centigrades - value in centigrades
@@ -64,35 +70,20 @@ export const changeTempUnit = value => {
  * @returns {string} string with the corresponding image address according weather, description and hour
  */
 export const assignWeatherIcon = (weather, description, hour) => {
-    const formattedWeather = weather.toLowerCase();
-    const formattedDescription = description.replace(/\s+/g, '_');
-    if (hour > '19:00' || hour < '06:00') {
-        return iconWeathersNight[formattedWeather][formattedDescription]
-    }
-    return iconWeathersDay[formattedWeather][formattedDescription];
+    const formattedWeather = weather.toLowerCase()
+    const formattedHour = parseHour(hour)
+    const formattedDescription = description.replace(/\s+/g, '_')
+    return formattedHour ? iconWeathersDay[formattedWeather][formattedDescription] :
+        iconWeathersNight[formattedWeather][formattedDescription]
 }
 
 /**
- * function to convert full date to short string weekday 
- * @param {number } datetime - timestamp in Unix 
- * @param {number} timezone - time offset in seconds
- * @returns {string} day of the week in short string in Spanish conversion
+ * function to convert the format from 12h to 24h and check if it is night
+ * @param {string} date date in am/pm format
+ * @returns {boolean} true if it is nigth and false if it is not
  */
-export const convertDate = (datetime, timezone) => {
-    const date = new Date((datetime + timezone) * 1000)
-    return date.toLocaleDateString('es-ES', { weekday: 'short' })
-}
-
-/**
- * function to splice hour to full date
- * @param {string} date date in full format 
- * @returns {string} hour in HH:mm format
- */
-export const getHour = date => {
-    const hour = date.split(' ')
-    return hour[1].slice(0, -3)
-}
-
-export const getMiliseconds = date => {
-    return new Date(date).getTime()
+const parseHour = (date) => {
+    const parseDate = DateTime.fromFormat(date, 'h:mm a', { locale: 'en-US' })
+    const hour24 = parseDate.toFormat('HH:mm')
+    return hour24 >= '06:00' && hour24 < '18:00'
 }

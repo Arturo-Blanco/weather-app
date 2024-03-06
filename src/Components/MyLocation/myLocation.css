@@ -1,0 +1,33 @@
+.my-location-btn {
+    display: flex;
+    align-items: center;
+    border: none;
+    width: max-content;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #f1e8e8;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+.btn-location-text {
+    margin: 0;
+    padding: 0;
+}
+
+.my-location-btn>svg {
+    margin-right: 3px;
+}
+
+@media screen and (max-width : 767px) {
+    .btn-location-text {
+        display: none;
+    }
+
+    .my-location-btn>svg {
+        margin: 0;
+    }
+}

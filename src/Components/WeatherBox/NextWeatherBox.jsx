@@ -1,34 +1,25 @@
-import { assignWeatherIcon, convertDate, getLocalHour } from '../CurrentCity/services/functions.mjs'
-import PropTypes from 'prop-types'
-import './weatherBox.css'
+import { useParams } from 'wouter'
+import { useNextWeather } from '../../hooks/useNextWeather'
+import { NextWeatherCard } from '../Card/NextWeather'
+import './nextWeatherBox.css'
 
-const NextWeatherBox = ({ nextWeatherData, changeWeatherData }) => {
+export const NextWeatherBox = () => {
+    const params = useParams()
+    const { nextWeatherData, isLoading, nextWeatherHasError } = useNextWeather({ params })
+
+    if (nextWeatherHasError) return <p className='extended-forecast-error'> Error getting data</p>
 
     return (
         <section className='next-weather-card-container'>
             <div className='div-articles'>
-                {nextWeatherData.map((value, index) => (
-                    <article className="next-weather-card" key={index} onClick={() => changeWeatherData(value)}>
-                        <p className='date-text'>{convertDate(value.datetime, value.timezone)}</p>
-                        <p className='hour-text'>{getLocalHour(value.datetime, value.timezone)}</p>
-                        <div className='next-weather-div-img'>
-                            <img className='next-weather-img' src={assignWeatherIcon(value.weather, value.description, getLocalHour(value.datetime, value.timezone))} alt="" />
-                        </div>
-                        <div className='temp-container'>
-                            <span className='temp-max'>{value.temp_max}°</span>
-                            <span className='temp-min'>{value.temp_min}°</span>
-                        </div>
-                    </article>
-                ))}
+                {(nextWeatherData && !isLoading) &&
+                    nextWeatherData.map((value, index) => (
+                        < NextWeatherCard key={index} weatherData={value} />)
+                    )}
             </div>
+            {isLoading
+                && <p className='extended-forecast'>
+                    Loading extended forecast...</p>}
         </section>
     )
 }
-
-NextWeatherBox.propTypes = {
-    changeWeatherData: PropTypes.func,
-    nextWeatherData: PropTypes.array
-}
-
-
-export default NextWeatherBox

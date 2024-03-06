@@ -1,0 +1,144 @@
+.current-weather-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 0.5rem;
+    background-color: rgba(12, 35, 70, 0.678);
+    color: #e9e3e3;
+}
+
+.current-weather-information {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2rem 0;
+    padding-top: 0;
+    width: 100%;
+}
+
+.current-weather-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.current-weather-img-div {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.current-weather-img {
+    width: 100%;
+    object-fit: contain;
+    filter: none;
+    opacity: 1;
+}
+
+.current-weather-temp-group,
+.current-weather-description {
+    display: flex;
+    flex-direction: column;
+}
+
+.current-weather-temp-div {
+    display: flex;
+    align-items: center;
+}
+
+.current-weather-temp-unit {
+    font-size: 4rem;
+    font-weight: 600;
+}
+
+.current-weather-box {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding-bottom: 2rem;
+}
+
+.units-container {
+    font-weight: 100;
+    font-size: 1.5rem;
+    line-height: 24px;
+    margin-left: 4px;
+}
+
+.celsius-unit,
+.fahrenheit-unit {
+    cursor: pointer;
+}
+
+.units-separator {
+    border-left: 1px solid #e9e3e3;
+    margin: 0 4px;
+}
+
+.active {
+    font-weight: 500;
+    font-size: 1.8rem;
+}
+
+.hour {
+    font-size: 1.5rem;
+}
+
+.show-current-weather-div {
+    display: flex;
+    width: 90%;
+    justify-content: flex-start;
+    align-items: center;
+    height: 30px;
+}
+
+.show-current-weather-btn {
+    border: none;
+    color: #2e2b2b;
+    background-color: #f7efef9f;
+    font-size: 1.2rem;
+    padding: .2rem 1rem;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.day {
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 767px) {
+
+    .current-weather-section {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .current-weather-img-div {
+        width: 30%;
+    }
+
+    .current-weather-box {
+        padding: 0;
+    }
+    
+    .current-weather-temp-unit {
+        font-size: 3rem;
+    }
+
+    .current-weather-information {
+        padding-bottom: 1rem;
+    }
+
+    .current-weather-container,
+    .current-weather-box,
+    .current-weather-section,
+    .current-weather-information {
+        min-width: 300px;
+    }
+}

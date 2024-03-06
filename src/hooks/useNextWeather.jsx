@@ -1,22 +1,23 @@
-import { useState, useEffect, useContext } from "react"
+import { useState, useEffect } from "react"
 import { getNextWeather } from "../services/api.mjs"
-import { CityContext } from "../context/cityContext"
-import { useCurrentWeather } from "./useCurrentWeather"
 
-export const useNextWeather = () => {
-    const { coords, cityName } = useContext(CityContext)
+export const useNextWeather = ({ params }) => {
+    const { city } = params || {}
+    const [ coords, setCoordinates ] = useState({
+        latitude: '',
+        longitude: ''
+    })
     const [isLoading, setIsLoading] = useState(false)
     const [nextWeatherData, setNexWeatherData] = useState([])
-    const { currentCityName } = useCurrentWeather()
     const [nextWeatherHasError, setNextWeatherHasError] = useState(false)
 
     useEffect(() => {
-        if ((coords.latitude && coords.longitude) || cityName) {
+        if ((coords.latitude && coords.longitude) || city) {
             const fetchData = async () => {
                 setNextWeatherHasError(false)
                 setIsLoading(true)
                 try {
-                    const data = await getNextWeather(coords.latitude, coords.longitude, cityName)
+                    const data = await getNextWeather(coords.latitude, coords.longitude, city)
                     setNexWeatherData(data)
                 } catch (error) {
                     console.error("Error fetching next weather:", error)
@@ -29,8 +30,7 @@ export const useNextWeather = () => {
             const intervalId = setInterval(fetchData, 600000)
             return () => clearInterval(intervalId)
         }
-    }, [coords.latitude, coords.longitude, cityName, currentCityName])
+    }, [coords.latitude, coords.longitude, city])
 
-
-    return { nextWeatherData, isLoading, nextWeatherHasError }
+    return { nextWeatherData, isLoading, nextWeatherHasError, setCoordinates }
 }

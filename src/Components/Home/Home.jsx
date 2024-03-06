@@ -1,9 +1,8 @@
-export const Home = ({ children }) => {
+export const Home = () => {
 
     return (
         <>
             <main className='container'>
-                { children }
             </main>
         </>
     )

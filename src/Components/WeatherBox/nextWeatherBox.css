@@ -30,6 +30,9 @@
 
 .next-weather-div-img {
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .next-weather-img {
@@ -55,7 +58,8 @@
 
 .extended-forecast {
     font-size: 2rem;
-    color: #0a130e;
+    color: rgb(240, 231, 231);
+    filter: drop-shadow(2px 2px 2px rgb(36, 8, 8))
 }
 
 .extended-forecast-error {
@@ -66,18 +70,29 @@
 @media screen and (max-width: 767px) {
 
     .next-weather-card-container {
-        width: 62%;
         margin-top: 1rem;
+        min-width: 300px;
     }
 
     .div-articles {
-        overflow: scroll;
-        grid-template-columns: repeat(8, calc((100% / 2) - 3px));
+        overflow-y: hidden;
+        grid-template-columns: repeat(8, calc((100% / 3) - 6px));
+    }
+
+    .div-articles::-webkit-scrollbar {
+        background-color: transparent; 
     }
 
     .extended-forecast,
     .extended-forecast-error {
         font-weight: 600;
         font-size: 1.2rem;
+    }
+    .next-weather-card {
+        padding: .5rem;
+        font-size: 1rem;
+    }
+    .next-weather-img {
+        width: 80%;
     }
 }

@@ -1,22 +1,15 @@
-.mb-3.form-floating {
+.mb-3.input-group {
     width: 30%;
-    margin: 2rem auto;
+    margin: 0 auto;
 }
 
-.btn-primary {
-    border-color: #d6cece;
-    width: 10%;
-}
-
-.mb-3.form-floating > label {
-    opacity: .7;
+.btn.btn-primary {
+    width: max-content;
 }
 
 @media screen and (max-width : 767px) {
-    .mb-3.form-floating {
-        width: 80%;
-    }
-    .btn-primary {
-        width: 30%;
+    .mb-3.input-group {
+        margin: 0 auto;
+        min-width: 250px;
     }
 }

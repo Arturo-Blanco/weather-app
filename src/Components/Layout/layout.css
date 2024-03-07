@@ -1,11 +1,13 @@
 .home-text-container {
     display: flex;
+    flex-direction: column; /* Cambia a columna en pantallas más pequeñas */
+    align-items: center; /* Centra los elementos en el eje X */
 }
 
 .home-text {
     font-size: 2rem;
     color: rgb(240, 231, 231);
-    filter: drop-shadow(2px 2px 2px rgb(36, 8, 8))
+    filter: drop-shadow(2px 2px 2px rgb(36, 8, 8));
 }
 
 .city-name {
@@ -20,8 +22,9 @@
     text-align: center;
 }
 
-@media screen and (max-width : 767px) {
+@media screen and (max-width: 767px) {
     .home-text {
         font-size: 1.5rem;
+        text-align: center; /* Centra el texto en pantallas pequeñas */
     }
 }

@@ -1,17 +1,22 @@
 .next-weather-card-container {
     width: 80%;
-    margin-top: 2rem;
-    overflow: hidden;
+    margin-top: 1rem;
+    min-width: 300px;
 }
 
 .div-articles {
     display: grid;
-    grid-template-columns: repeat(8, calc((100% / 8) - 6px));
+    overflow-y: hidden;
+    grid-template-columns: repeat(8, calc((100% / 3) - 6px));
     gap: 6px;
 }
 
+.div-articles::-webkit-scrollbar {
+    background-color: transparent;
+}
+
 .next-weather-card {
-    font-size: 1.2rem;
+    font-size: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,7 +24,7 @@
     border-radius: 0.5rem;
     background-color: rgba(12, 35, 70, 0.678);
     color: #e9e3e3;
-    padding: 1rem;
+    padding: .5rem;
     cursor: pointer;
     opacity: .8;
 }
@@ -36,7 +41,7 @@
 }
 
 .next-weather-img {
-    width: 100%;
+    width: 80%;
     height: auto;
     object-fit: contain;
 }
@@ -57,42 +62,41 @@
 }
 
 .extended-forecast {
-    font-size: 2rem;
     color: rgb(240, 231, 231);
     filter: drop-shadow(2px 2px 2px rgb(36, 8, 8))
 }
 
 .extended-forecast-error {
-    font-size: 2rem;
     color: red;
 }
 
-@media screen and (max-width: 767px) {
+.extended-forecast,
+.extended-forecast-error {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+@media screen and (min-width: 767px) {
 
     .next-weather-card-container {
-        margin-top: 1rem;
-        min-width: 300px;
+        margin-top: 2rem;
+
     }
 
     .div-articles {
-        overflow-y: hidden;
-        grid-template-columns: repeat(8, calc((100% / 3) - 6px));
-    }
-
-    .div-articles::-webkit-scrollbar {
-        background-color: transparent; 
+        overflow: hidden;
+        grid-template-columns: repeat(8, calc((100% / 6) - 6px));
     }
 
     .extended-forecast,
     .extended-forecast-error {
-        font-weight: 600;
-        font-size: 1.2rem;
+        font-size: 2rem;
     }
-    .next-weather-card {
-        padding: .5rem;
-        font-size: 1rem;
-    }
-    .next-weather-img {
-        width: 80%;
+}
+
+@media screen and (min-width: 1000px) {
+    .div-articles {
+        overflow: hidden;
+        grid-template-columns: repeat(8, calc((100% / 8) - 6px));
     }
 }

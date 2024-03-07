@@ -14,8 +14,10 @@ export const SearchCity = () => {
     }
 
     const handleClick = () => {
-        setLocation(`/search/${city}`)
-        setCity('')
+        if (city.trim() !== '') {
+            setLocation(`/search/${city}`)
+            setCity('')
+        }
     }
 
     return (
@@ -26,8 +28,9 @@ export const SearchCity = () => {
                     aria-label="Input to enter the city name"
                     aria-describedby="basic-addon2"
                     onChange={handleInputChange}
+                    value={city}
                 />
-                <Button  id="button-addon2" onClick={handleClick}>
+                <Button id="button-addon2" onClick={handleClick} disabled={!city.trim()}>
                     Search
                 </Button>
             </InputGroup>

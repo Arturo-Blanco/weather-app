@@ -3,10 +3,21 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
+    height: 100vh;
     background: url('https://www.meganoticias.mx/uploads/noticias/cielo-despejado-con-vientos-de-5-a-10-kmh-414206.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px); 
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.openweather-atributtion {
+    padding: 2rem;
+    font-weight: 500;
+}
+
+.openweather-atributtion > a {
+    color: rgb(58, 55, 54);
 }
